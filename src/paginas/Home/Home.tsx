@@ -5,8 +5,8 @@ import './Home.css';
 function Home(){
     return(
         <>
-            <h1>Home</h1>
-            <img src="./paginas/fuji" alt="Imagem Tela Inicial" width="500px" height="500px" />
+            <h1 className='titulo'>Home</h1>
+            <img className= 'img' src="https://i.imgur.com/P9IVqkS.jpeg" alt="Imagem Tela Inicial"  />
         </>
     );
 }
