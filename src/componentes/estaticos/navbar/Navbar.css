@@ -1,0 +1,12 @@
+.bg-menu{
+    background:radial-gradient(circle, #eeaeca 0%, rgba(148,187,233,1) 100%);
+}
+
+.container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.title{
+    font-weight: bold!important;
+}

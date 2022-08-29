@@ -9,3 +9,7 @@
     display: block;
     margin: 0 auto;
 }
+
+h6,h5,h3 {
+    font-family: montserrat!important;
+}
