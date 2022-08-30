@@ -1,21 +1,31 @@
 import React from 'react';
+import './App.css';
 import Navbar from './componentes/estaticos/navbar/Navbar';
 import Footer from './componentes/estaticos/footer/Footer';
-
-import './App.css';
-import { Grid } from '@material-ui/core';
 import Home from './paginas/Home/Home';
 import Login from './paginas/Login/Login';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
+//
 
 function App() {
   return (
-    <>
+    <Router >
       <Navbar />
-      <Home />
+      {/* <div style={{minHeight: '100vh'}}>
+
+      </div> */}
+
+        <Routes>
+          
+          <Route path='/' element={<Login />} />
+          <Route path='/home' element={<Home />} />
+
+        </Routes>
+     
       <Footer />
-      <Login />
-    </>
+     
+    </Router>
   );
 }
 

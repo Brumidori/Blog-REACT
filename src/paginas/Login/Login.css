@@ -22,7 +22,7 @@
     align-items: center;
 
     border-radius: 24px;
-    background: linear-gradient(36deg, rgba(232,196,213, 80%) 7%, rgba(247,216,160, 80%) 88%);
+    background: linear-gradient(36deg, rgba(232,196,213, 90%) 7%, rgba(247,216,160, 90%) 88%);
 }
 
 .card-title{
@@ -39,9 +39,17 @@ label{
     font-weight: bold!important;
 }
 
+/* .TextField{
+    style: TextStyle(color: red);
+    decoration: InputDecoration(fillColor: orange, filled: true);
+} */
+
+input{
+    color: #9b5b63!important;
+}
+
 .form-input{
     width: 100%;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif!important;
 }
 
 .form-btn{
@@ -50,7 +58,7 @@ label{
 }
 
 .MuiInput-underline:before{
-    border-bottom: 1px solid ##4894d8!important;
+    border-bottom: 1px solid #4894d8!important;
 }
 
 .MuiInput-underline:after{
