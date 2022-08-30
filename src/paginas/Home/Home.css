@@ -1,6 +1,8 @@
 .titulo {
     color: mediumturquoise;
     text-align: center;
+    color: white!important;
+    font-weight: bold!important;
 }
 
 .img {
@@ -13,3 +15,30 @@
 h6,h5,h3 {
     font-family: montserrat!important;
 }
+
+.botao{
+    border-color: white!important;
+    background: rgba(149,223,237,0.4)!important;
+    color: white!important; 
+}
+
+.caixa{
+    background: linear-gradient(36deg, rgba(237,233,197,1) 17%, rgba(109,153,161,0.6727065826330532) 88%);
+}
+.bg-home{
+    width: 100vw;
+    min-height: 100vh; /* Função para calcular o tamanho do Home com base no tamanho da tela e do Navbar */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('https://i.imgur.com/H88yIo2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.postagens{
+    background-color: white;
+}
+

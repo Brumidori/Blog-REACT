@@ -10,21 +10,17 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 function App() {
   return (
-    <Router >
+    <Router>
       <Navbar />
-      {/* <div style={{minHeight: '100vh'}}>
-
-      </div> */}
-
-        <Routes>
-          
-          <Route path='/' element={<Login />} />
-          <Route path='/home' element={<Home />} />
-
+      <div style={{ minHeight: '100vh' }}>
+        <Routes> // Antigo Switch
+          <Route path="/" element={<Login />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/home" element={<Home />} />
+        
         </Routes>
-     
+      </div>
       <Footer />
-     
     </Router>
   );
 }

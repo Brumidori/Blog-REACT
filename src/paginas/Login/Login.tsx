@@ -1,12 +1,13 @@
 import { Box } from '@mui/material'
 import { Button, Grid, TextField, Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import React from 'react';
 
 import './Login.css'
 
 function Login() {
   return (
-    <Grid container className="bg-home">
+    <Grid container className="bg-login">
       <Grid item xs={12} sm={12}>
 
         <Box display="flex" justifyContent="center" alignItems="center" height="80vh">
@@ -24,11 +25,20 @@ function Login() {
               <Box marginY={4}>
                 <TextField className='form-input' id="standard-basic" type="password" label="Senha" required />
               </Box>
-
-              <Button className="form-btn" variant="contained">
-                Acessar
-              </Button>
+                <Link to='/home' className='text-decoration-none'>
+                  <Button className="form-btn" variant="contained" type='submit'>
+                    Acessar
+                  </Button>
+                </Link>
+              
             </form>
+            <Box display='flex' justifyContent='center' marginTop={2} style={{color: '#BF685E', fontFamily: 'montserrat'}}>
+              <Box marginRight={1}>
+                <Typography variant='subtitle1' gutterBottom align='center'>Não tem uma conta?</Typography>
+              </Box>
+              <Typography variant='subtitle1' gutterBottom align='center' style=
+              {{fontWeight: 'bold', cursor: "pointer"}}>Cadastre-se</Typography>
+            </Box>
 
           </Box>
         </Box>
