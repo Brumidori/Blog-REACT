@@ -68,6 +68,11 @@ input{
 .text-decoration-none {
     text-decoration: none;
 }
+
+.text-decoration-link{
+    text-decoration: none;
+    color: #BF685E!important;
+}
 /* Sobrepor o underline do Input, nesse caso precisa passar o !important para sobrepor a prop. Transition
 Nesse caso, o !Important está sobrepondo tudo relacionado ao border-bottom dessa classe
 */

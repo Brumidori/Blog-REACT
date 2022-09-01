@@ -1,11 +1,55 @@
 import { Box } from '@mui/material'
 import { Button, Grid, TextField, Typography } from '@material-ui/core';
-import { Link } from 'react-router-dom';
-import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import useLocalStorage from 'react-use-localstorage';
+import React, {ChangeEvent, useState, useEffect} from 'react';
+import UserLogin from '../../models/UserLogin';
+import { login } from '../../services/Service';
+
 
 import './Login.css'
 
 function Login() {
+  let history = useNavigate();
+  const [token, setToken] = useLocalStorage('token');
+
+  const [userLogin, setUserLogin] = useState<UserLogin>(
+    {
+      id: 0,
+      nome: '',
+      usuario: '',
+      senha: '',
+      foto: '',
+      token: ''
+    }
+  )
+
+  function updatedModel(e: ChangeEvent<HTMLInputElement>){
+    setUserLogin({
+      ...userLogin,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  useEffect(() => {
+    if(token != '') {
+      history('/home')
+    }
+  }, [token]
+  )
+  
+  async function onSubmit(e: ChangeEvent<HTMLFormElement>){
+    e.preventDefault();
+    try{
+      await login('/usuarios/logar', userLogin, setToken)
+
+      alert('Usuário logado com sucesso!')
+    }catch (error){
+      alert('Dados do usuário inconsistentes. Erro ao logar! ');
+    }
+    
+  }
+
   return (
     <Grid container className="bg-login">
       <Grid item xs={12} sm={12}>
@@ -17,27 +61,30 @@ function Login() {
               Login
             </Typography>
 
-            <form>
+            <form onSubmit={onSubmit}>
               <Box marginY={4}>
-                <TextField className='form-input' id="standard-basic" type="email" label="Email" required />
+                <TextField value={userLogin.usuario} onChange={(e:ChangeEvent<HTMLInputElement>) => updatedModel(e)} className='form-input' id='usuario' label='Usuario' variant='outlined' name='usuario' margin='normal' fullWidth />
               </Box>
 
               <Box marginY={4}>
-                <TextField className='form-input' id="standard-basic" type="password" label="Senha" required />
+                <TextField value={userLogin.senha} onChange={(e:ChangeEvent<HTMLInputElement>) => updatedModel(e)} className='form-input'  id='senha' label='Senha' variant='outlined' name='senha' margin='normal' fullWidth type='password' />
               </Box>
-                <Link to='/home' className='text-decoration-none'>
+                
                   <Button className="form-btn" variant="contained" type='submit'>
-                    Acessar
+                    Logar
                   </Button>
-                </Link>
+                
               
             </form>
             <Box display='flex' justifyContent='center' marginTop={2} style={{color: '#BF685E', fontFamily: 'montserrat'}}>
               <Box marginRight={1}>
                 <Typography variant='subtitle1' gutterBottom align='center'>Não tem uma conta?</Typography>
               </Box>
-              <Typography variant='subtitle1' gutterBottom align='center' style=
-              {{fontWeight: 'bold', cursor: "pointer"}}>Cadastre-se</Typography>
+              <Link to='/cadastroUsuario' className='text-decoration-link'>
+                <Typography variant='subtitle1' gutterBottom align='center' style=
+                {{fontWeight: 'bold', cursor: "pointer"}}>Cadastre-se</Typography>
+              </Link>
+              
             </Box>
 
           </Box>
