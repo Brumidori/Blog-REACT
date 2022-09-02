@@ -56,27 +56,27 @@ function Login() {
 
         <Box display="flex" justifyContent="center" alignItems="center" height="80vh">
 
-          <Box className="card">
-            <Typography className='card-title' variant="h4" align="center">
+          <Box className="card-login">
+            <Typography className='card-title-login' variant="h4" align="center">
               Login
             </Typography>
 
             <form onSubmit={onSubmit}>
               <Box marginY={4}>
-                <TextField value={userLogin.usuario} onChange={(e:ChangeEvent<HTMLInputElement>) => updatedModel(e)} className='form-input' id='usuario' label='Usuario' variant='outlined' name='usuario' margin='normal' fullWidth />
+                <TextField value={userLogin.usuario} onChange={(e:ChangeEvent<HTMLInputElement>) => updatedModel(e)} className='form-input-login' id='usuario' label='Usuario' variant='outlined' name='usuario' margin='normal' fullWidth />
               </Box>
 
               <Box marginY={4}>
-                <TextField value={userLogin.senha} onChange={(e:ChangeEvent<HTMLInputElement>) => updatedModel(e)} className='form-input'  id='senha' label='Senha' variant='outlined' name='senha' margin='normal' fullWidth type='password' />
+                <TextField value={userLogin.senha} onChange={(e:ChangeEvent<HTMLInputElement>) => updatedModel(e)} className='form-input-login'  id='senha' label='Senha' variant='outlined' name='senha' margin='normal' fullWidth type='password' />
               </Box>
                 
-                  <Button className="form-btn" variant="contained" type='submit'>
+                  <Button className="form-btn-login" variant="contained" type='submit'>
                     Logar
                   </Button>
                 
               
             </form>
-            <Box display='flex' justifyContent='center' marginTop={2} style={{color: '#BF685E', fontFamily: 'montserrat'}}>
+            <Box display='flex' justifyContent='center' marginTop={1} style={{color: '#BF685E', fontFamily: 'montserrat'}}>
               <Box marginRight={1}>
                 <Typography variant='subtitle1' gutterBottom align='center'>Não tem uma conta?</Typography>
               </Box>

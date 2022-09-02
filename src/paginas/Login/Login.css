@@ -12,9 +12,9 @@
     background-repeat: no-repeat;
 }
 
-.card{
-    width: 340px;
-    height: 50vh;
+.card-login{
+    width: 30vw;
+    height: 60vh;
 
     display: flex;
     flex-direction: column;
@@ -25,34 +25,27 @@
     background: linear-gradient(36deg, rgba(232,196,213, 90%) 7%, rgba(247,216,160, 90%) 88%);
 }
 
-.card-title{
+.card-title-login{
     font-weight: bold!important;
     color: #ffffff;
 }
 
-form{
-    width: 270px;
-}
+
 
 label{
     color: #ffffff!important;
     font-weight: bold!important;
 }
 
-/* .TextField{
-    style: TextStyle(color: red);
-    decoration: InputDecoration(fillColor: orange, filled: true);
-} */
-
-input{
+input-login{
     color: #9b5b63!important;
 }
 
-.form-input{
+.form-input-login{
     width: 100%;
 }
 
-.form-btn{
+.form-btn-login{
     background-color: #9b5b63!important;
     color: #ffffff!important;
 }
