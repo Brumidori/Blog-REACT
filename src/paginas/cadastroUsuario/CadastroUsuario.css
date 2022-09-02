@@ -1,21 +1,18 @@
-.container{
-    display:flex;
-    justify-content: space-between;
-    align-items: space-between;
-}
-
 .imagem2{
-    width: 100vw;
-    min-height: 100vh; /* Função para calcular o tamanho do Home com base no tamanho da tela e do Navbar */
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background-image: url('https://media.istockphoto.com/photos/box-yellow-picture-id513223112');
+    background-image: url(https://i.imgur.com/d5bMdDJ.jpg);
+    background-repeat: no-repeat;
+    width: 100vh;
+    min-height: 100vh;
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
+}
+
+.textos2{
+    font-weight: bold !important;
+}
+
+.btnCancelar{
+    margin-right: 20px !important;
 }
 .cadastro{
     border: 5px solid #f6cd51;
@@ -27,22 +24,6 @@
 
 }
 
-.card-title{
-    font-weight: bold!important;
-    color: #81500b;
-}
-
-form{
-    justify-content: center;
-    align-items: center;
-    width: 40%;
-    height: fit-content;
-    padding: 3rem;
-}
-
-.form-input{
-    padding: 3rem;
-}
 
 label{
     color: #81500b!important;
