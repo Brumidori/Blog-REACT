@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useEffect, useState } from 'react'
-import { Box, Button, Grid, TextField, Typography } from '@material-ui/core'
+import { Button, Grid, TextField, Typography } from '@material-ui/core'
+import {Box} from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 
 import User from '../../models/User';
@@ -9,7 +10,7 @@ import './CadastroUsuario.css';
 
 function CadastroUsuario() {
 
-    let history = useNavigate()
+    let history = useNavigate();
 
     const [confirmarSenha, setConfirmarSenha] = useState<String>("")
 
