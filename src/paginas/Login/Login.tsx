@@ -63,11 +63,8 @@ function Login() {
 
             <form onSubmit={onSubmit}>
               <Box marginY={4}>
-                <TextField value={userLogin.usuario} onChange={(e:ChangeEvent<HTMLInputElement>) => updatedModel(e)} className='form-input-login' id='usuario' label='Usuario' variant='outlined' name='usuario' margin='normal' fullWidth />
-              </Box>
-
-              <Box marginY={4}>
-                <TextField value={userLogin.senha} onChange={(e:ChangeEvent<HTMLInputElement>) => updatedModel(e)} className='form-input-login'  id='senha' label='Senha' variant='outlined' name='senha' margin='normal' fullWidth type='password' />
+              <TextField className='input-login' value={userLogin.usuario} onChange={(e:ChangeEvent<HTMLInputElement>) => updatedModel(e)} id='usuario' label='E-mail' name='usuario'/>
+              <TextField className='input-login' value={userLogin.senha} onChange={(e:ChangeEvent<HTMLInputElement>) => updatedModel(e)} id='senha' label='Senha'  name='senha'  type='password' />
               </Box>
                 
                   <Button className="form-btn-login" variant="contained" type='submit'>
