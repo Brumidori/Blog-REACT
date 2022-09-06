@@ -1,5 +1,5 @@
 interface Tema{
-    id: number;
+    id_temas: number;
     descricao:string;
 }
 

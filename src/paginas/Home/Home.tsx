@@ -3,6 +3,7 @@ import {Typography, Grid, Button} from '@material-ui/core';
 import { Box } from '@mui/material';
 import './Home.css';
 import TabPostagem from '../../componentes/postagens/tabpostagem/TabPostagem';
+import ModalPostagem from '../../componentes/postagens/modalPostagem/ModalPostagem';
 
 function Home() {
     return (
@@ -14,7 +15,8 @@ function Home() {
                         <Typography variant="h5" gutterBottom color="textPrimary" component="h5" align="center" style={{ color: "white", fontWeight: "bold" }}>Expresse aqui os seus pensamentos e opiniões!</Typography>
                     </Box>
                     <Box display="flex" justifyContent="center">
-                        <Box marginRight={1}>
+                    <Box marginRight={1}>
+                            <ModalPostagem />
                         </Box>
                         <Button variant="outlined" className='botao'>Ver Postagens</Button>
                     </Box>

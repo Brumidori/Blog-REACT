@@ -54,6 +54,13 @@ function Navbar() {
                             </Typography>
                         </Box>
                         </Link>
+                        <Link to='/formularioPostagem' className='text-decoration-none'>
+                        <Box mx={1} className='cursor'>
+                            <Typography variant="h6" color="inherit">
+                                Cadastrar Postagem
+                            </Typography>
+                        </Box>
+                        </Link>
                         
                             <Box onClick={goLogout} mx={1} className='cursor'>
                                 <Typography variant="h6" color="inherit">
