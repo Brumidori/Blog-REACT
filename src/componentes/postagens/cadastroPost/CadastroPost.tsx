@@ -3,6 +3,7 @@ import { Container, Typography, TextField, Button, Select, InputLabel, MenuItem,
 import './CadastroPost.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import Tema from '../../../models/Tema';
+import User from '../../../models/User';
 import useLocalStorage from 'react-use-localstorage';
 import Postagem from '../../../models/Postagem';
 import { busca, buscaId, post, put } from '../../../services/Service';
@@ -27,14 +28,25 @@ function CadastroPost() {
             descricao: ''
         })
 
+    const [usuario, setUser] = useState<User>(
+        {
+            id: 1,  // iniciar o usuario com id:1
+            nome: '',
+            usuario: '',
+            senha: '',
+            foto: ''
+        })
+
     const [postagem, setPostagem] = useState<Postagem>({
         id: 0,
         titulo: '',
         texto: '',
-        temas: null
+        data: '',
+        temas: null,
+        usuario: null,
     })
 
-    useEffect(() => { 
+    useEffect(() => {
         setPostagem({
             ...postagem,
             temas: tema
@@ -56,6 +68,16 @@ function CadastroPost() {
         })
     }
 
+    // async function findByIdUser(id : string){
+    //     await buscaId(`/usuarios/${id}`, setUser, {
+    //         headers: {
+    //             'Authorization': token
+    //         }
+    //     })
+    // }
+
+    
+
     async function findByIdPostagem(id: string) {
         await buscaId(`postagens/${id}`, setPostagem, {
             headers: {
@@ -69,7 +91,8 @@ function CadastroPost() {
         setPostagem({
             ...postagem,
             [e.target.name]: e.target.value,
-            temas: tema
+            temas: tema,
+            usuario: usuario,
         })
 
     }
@@ -133,3 +156,5 @@ function CadastroPost() {
     )
 }
 export default CadastroPost;
+
+
