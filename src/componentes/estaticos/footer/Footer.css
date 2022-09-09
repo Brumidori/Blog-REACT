@@ -16,3 +16,8 @@
 .textos{
     color: white;
 }
+
+.text-decoration-none{
+    text-decoration: none;
+    color: white;
+}

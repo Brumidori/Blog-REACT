@@ -6,11 +6,15 @@ import Tema from '../../../models/Tema';
 import './Listatema.css';
 import useLocalStorage from 'react-use-localstorage';
 import { busca } from '../../../services/Service';
+import { useSelector } from 'react-redux';
+import { TokenState} from '../../../store/tokens/tokenReducer'
 
 function ListaTema() {
 
   const [temas, setTemas] = useState<Tema[]>([])
-  const [token, setToken] = useLocalStorage('token');
+  const token = useSelector<TokenState, TokenState["tokens"]>(
+    (state) => state.tokens
+  );
   let navigate = useNavigate();
 
   useEffect(()=>{

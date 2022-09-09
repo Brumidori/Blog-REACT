@@ -1,17 +1,19 @@
 import { Box } from '@mui/material'
 import { Button, Grid, TextField, Typography } from '@material-ui/core';
 import { Link, useNavigate } from 'react-router-dom';
-import useLocalStorage from 'react-use-localstorage';
 import React, {ChangeEvent, useState, useEffect} from 'react';
 import UserLogin from '../../models/UserLogin';
 import { login } from '../../services/Service';
+import { useDispatch } from 'react-redux';
+import { addToken } from "../../store/tokens/actions";
 
 
 import './Login.css'
 
 function Login() {
   let history = useNavigate();
-  const [token, setToken] = useLocalStorage('token');
+  const dispatch = useDispatch();
+  const [token, setToken] = useState('');
 
   const [userLogin, setUserLogin] = useState<UserLogin>(
     {
@@ -33,6 +35,7 @@ function Login() {
 
   useEffect(() => {
     if(token != '') {
+      dispatch(addToken(token));
       history('/home')
     }
   }, [token]
@@ -53,17 +56,20 @@ function Login() {
   return (
     <Grid container className="bg-login">
       <Grid item xs={12} sm={12}>
+        
 
         <Box display="flex" justifyContent="center" alignItems="center" height="80vh">
-
           <Box className="card-login">
-            <Typography className='card-title-login' variant="h4" align="center">
+          
+            <Typography className='card-title-login' >
               Login
             </Typography>
 
             <form onSubmit={onSubmit}>
               <Box marginY={4}>
               <TextField className='input-login' value={userLogin.usuario} onChange={(e:ChangeEvent<HTMLInputElement>) => updatedModel(e)} id='usuario' label='E-mail' name='usuario'/>
+              </Box>
+              <Box marginY={4}>
               <TextField className='input-login' value={userLogin.senha} onChange={(e:ChangeEvent<HTMLInputElement>) => updatedModel(e)} id='senha' label='Senha'  name='senha'  type='password' />
               </Box>
                 

@@ -1,5 +1,5 @@
 .imagem2{
-    background-image: url(./CadastroUsuario.png);
+    background-image: url(./bg-sakura.png);
     background-repeat: no-repeat;
     width: 100vh;
     min-height: 100vh;
@@ -10,7 +10,6 @@
 .textos2{
     font-weight: bold !important;
     color: #81500b!important;
-    font-weight: bold!important;
 }
 
 .btnCadastrar{

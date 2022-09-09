@@ -3,14 +3,16 @@ import { Container, Typography, TextField, Button } from "@material-ui/core"
 import Tema from '../../../models/Tema';
 import { buscaId, post, put } from '../../../services/Service';
 import { useNavigate, useParams } from 'react-router-dom';
-import useLocalStorage from 'react-use-localstorage';
-import { NavigateNextTwoTone } from '@material-ui/icons';
+import { useSelector } from 'react-redux';
+import {TokenState} from '../../../store/tokens/tokenReducer'
 
 
 function CadastroTema() {
     let navigate = useNavigate();
     const {id_temas} = useParams < {id_temas: string}> ();
-    const [token, setToken] = useLocalStorage('token');
+    const token = useSelector<TokenState, TokenState["tokens"]>(
+        (state) => state.tokens
+      );
     const [tema, setTema] = useState<Tema>({
         id_temas: 0,
         descricao: ''
