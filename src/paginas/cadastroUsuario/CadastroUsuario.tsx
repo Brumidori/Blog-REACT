@@ -93,12 +93,6 @@ function CadastroUsuario() {
         }
     }
 
-    /*
-        = : atribuição (valor = 9)
-        == : op. aritmetico (valor == 9.0)
-        === : op. idêntico (valor === 9.0)
-    */
-
     return (
         <Grid container direction='row' justifyContent='center' alignItems='center'>
             <Grid item xs={6} className='imagem2'></Grid>

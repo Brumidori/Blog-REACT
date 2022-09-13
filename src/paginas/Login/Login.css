@@ -25,12 +25,12 @@
     background: linear-gradient(36deg, rgba(232,196,213, 90%) 7%, rgba(247,216,160, 90%) 88%);
 }
 
-.card-title-login{
-    font-weight: bold!important;
+.card-title-login {
     color: #9b5b63;
-    variant: h3;
-    component: h3;
     align: center
+}
+.MuiTypography-body1 p{
+    font-size: 1.5rem!important;
 }
 
 label{

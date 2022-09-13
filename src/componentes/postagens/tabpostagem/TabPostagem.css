@@ -1,3 +1,7 @@
 .titulo{
     font-weight: bold;
  }
+
+ .Tab-bar{
+    background: linear-gradient(36deg, rgba(237,233,197,1) 17%, rgba(109,154,162,0.5242471988795518) 54%, rgba(201,108,240,0.5746673669467788) 81%);
+ }

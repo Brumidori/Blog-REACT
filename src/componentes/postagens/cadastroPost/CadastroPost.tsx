@@ -10,7 +10,12 @@ import { useSelector } from 'react-redux';
 import { UserState } from '../../../store/tokens/tokenReducer';
 import { toast } from 'react-toastify';
 
-function CadastroPost() {
+interface CadastroPostProps{
+    posts: Postagem[]
+    setPosts: (value: Postagem[]) => void 
+}
+
+function CadastroPost( {posts, setPosts}: CadastroPostProps) {
     let history = useNavigate();
     const { id } = useParams<{ id: string }>();
     const [temas, setTemas] = useState<Tema[]>([])
@@ -108,7 +113,7 @@ function CadastroPost() {
     async function onSubmit(e: ChangeEvent<HTMLFormElement>) {
         e.preventDefault()
 
-        if (id !== undefined && user.id == postagem.usuario?.id) {
+        if (id !== undefined) {
         
             try {
                 await put(`/postagens`, postagem, setPostagem, {
@@ -162,6 +167,8 @@ function CadastroPost() {
                 progress: undefined,
                 })
 
+                setPosts([...posts, postagem])
+
             } catch (error) {
                 console.log("Error: " + error)
                 toast.error('Você precisa estar logado', {
@@ -182,7 +189,7 @@ function CadastroPost() {
     }
 
     function back() {
-        history('/postagens')
+        history('/home')
     }
 
     return (

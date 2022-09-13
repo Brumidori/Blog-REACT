@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Navbar from './componentes/estaticos/navbar/Navbar';
 import Footer from './componentes/estaticos/footer/Footer';
@@ -17,8 +17,11 @@ import { Provider } from 'react-redux';
 import Perfil from './paginas/perfil/Perfil';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Postagem from './models/Postagem';
 
 function App() {
+  const [posts, setPosts] = useState<Postagem[]>([]);
+
   return (
     <Provider store = {store}>
       <ToastContainer />
@@ -39,9 +42,9 @@ function App() {
 
           <Route path="/postagens" element={<ListaPostagem />} />
 
-          <Route path="/formularioPostagem" element={<CadastroPost />} />
+          <Route path="/formularioPostagem" element={<CadastroPost posts={posts} setPosts={setPosts} />} />
 
-          <Route path="/formularioPostagem/:id" element={<CadastroPost />} />
+          <Route path="/formularioPostagem/:id" element={<CadastroPost posts={posts} setPosts={setPosts}/>} />
 
           <Route path="/formularioTema" element={<CadastroTema />} />
 

@@ -58,14 +58,18 @@ function Perfil() {
             <Grid item sm={12} className="card-container">
 
                 <Box className='card-container-info'>
-                    <img className='card-imagem'
+                    <Box>
+                         <img className='card-imagem'
                         src={user.foto}
                         alt={user.nome} />
-
-                    <h1>{user.nome}</h1>
+                    </Box>
+                    <Box>
+                        <h1>{user.nome}</h1>
+                    </Box>
+                    
                 </Box>
 
-                <Box className='card-container-info'>
+                <Box className='card-container-about'>
                     <p className='card-container-texto'>
                         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam accusantium totam incidunt architecto maiores, perferendis eius. Tempora ullam magni dolore voluptatibus, quidem sunt tempore distinctio ut aliquam modi aliquid officiis.
                         Assumenda voluptatibus, animi pariatur voluptatum magnam ullam aspernatur optio suscipit incidunt dolor modi quos aperiam. Quam possimus rerum iste nobis quas porro unde sequi, sed nisi labore est voluptas corrupti.

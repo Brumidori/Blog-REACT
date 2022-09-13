@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Modal from '@mui/material/Modal';
 import {Button} from "@material-ui/core";
@@ -6,6 +6,7 @@ import { Box } from '@mui/material';
 import CloseIcon from '@material-ui/icons/Close';
 import './ModalPostagem.css';
 import CadastroPost from '../cadastroPost/CadastroPost';
+import Postagem from '../../../models/Postagem';
 
 
 function getModalStyle() {
@@ -33,6 +34,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 function ModalPostagem () {
+  const [posts, setPosts] = useState<Postagem[]>([]);
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
@@ -52,7 +54,7 @@ function ModalPostagem () {
       
       </Box>
       
-      <CadastroPost/>
+      <CadastroPost posts={posts} setPosts={setPosts}/>
       
     </div>
   );

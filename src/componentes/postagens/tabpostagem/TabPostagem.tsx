@@ -4,6 +4,7 @@ import { Box } from '@mui/material';
 import { TabContext, TabPanel } from '@material-ui/lab';
 import ListaPostagem from '../listapostagem/Listapostagem';
 import './TabPostagem.css';
+import CardPost from '../cardPost/cardPost';
 
 
 function TabPostagem() {
@@ -13,9 +14,9 @@ function TabPostagem() {
   }
 return (
   <>
-    <TabContext value={value}>
-      <AppBar position="static">
-        <Tabs centered indicatorColor="secondary" onChange={handleChange}>
+    <TabContext  value={value}>
+      <AppBar className="Tab-bar" position="static">
+        <Tabs centered onChange={handleChange}>
           <Tab label="Todas as postagens" value="1"/>
           <Tab label="Sobre-nós" value="2" />
         </Tabs>
