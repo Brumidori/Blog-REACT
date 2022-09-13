@@ -4,27 +4,23 @@ import './CadastroPost.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import Tema from '../../../models/Tema';
 import User from '../../../models/User';
-import useLocalStorage from 'react-use-localstorage';
 import Postagem from '../../../models/Postagem';
-import { busca, buscaId, post, put } from '../../../services/Service';
+import { busca, buscaId, cadastroUsuario, post, put } from '../../../services/Service';
 import { useSelector } from 'react-redux';
-import { TokenState } from '../../../store/tokens/tokenReducer';
+import { UserState } from '../../../store/tokens/tokenReducer';
+import { toast } from 'react-toastify';
 
 function CadastroPost() {
     let history = useNavigate();
     const { id } = useParams<{ id: string }>();
     const [temas, setTemas] = useState<Tema[]>([])
-    const token = useSelector<TokenState, TokenState["tokens"]>(
+    const token = useSelector<UserState, UserState["tokens"]>(
         (state) => state.tokens
-      );
-
-    useEffect(() => {
-        if (token == "") {
-            alert("Você precisa estar logado")
-            history("/login")
-
-        }
-    }, [token])
+    );
+    // Pega o ID guardado no Store
+    const userId = useSelector<UserState, UserState["id"]>(
+        (state) => state.id
+    );
 
     const [tema, setTema] = useState<Tema>(
         {
@@ -32,9 +28,9 @@ function CadastroPost() {
             descricao: ''
         })
 
-    const [usuario, setUser] = useState<User>(
+    const [user, setUser] = useState<User>(
         {
-            id: 1,  // iniciar o usuario com id:1
+            id: +userId,  // iniciar o usuario com id:1
             nome: '',
             usuario: '',
             senha: '',
@@ -51,9 +47,27 @@ function CadastroPost() {
     })
 
     useEffect(() => {
+        if (token === "") {
+            toast.error('Você precisa estar logado', {
+            position: "top-right",
+            autoClose: 2000, // fecha depois de 2s
+            hideProgressBar: false,
+            closeOnClick: true, 
+            pauseOnHover: false, // pausa o tempo com o mouse
+            draggable: false, // não pode mover
+            theme: "colored", 
+            progress: undefined,
+        })
+            history("/login")
+
+        }
+    }, [token])
+
+    useEffect(() => {
         setPostagem({
             ...postagem,
-            temas: tema
+            temas: tema,
+            usuario: user
         })
     }, [tema])
 
@@ -72,16 +86,6 @@ function CadastroPost() {
         })
     }
 
-    // async function findByIdUser(id : string){
-    //     await buscaId(`/usuarios/${id}`, setUser, {
-    //         headers: {
-    //             'Authorization': token
-    //         }
-    //     })
-    // }
-
-    
-
     async function findByIdPostagem(id: string) {
         await buscaId(`postagens/${id}`, setPostagem, {
             headers: {
@@ -96,7 +100,7 @@ function CadastroPost() {
             ...postagem,
             [e.target.name]: e.target.value,
             temas: tema,
-            usuario: usuario,
+            usuario: user,
         })
 
     }
@@ -104,21 +108,75 @@ function CadastroPost() {
     async function onSubmit(e: ChangeEvent<HTMLFormElement>) {
         e.preventDefault()
 
-        if (id !== undefined) {
-            put(`/postagens`, postagem, setPostagem, {
-                headers: {
-                    'Authorization': token
-                }
-            })
-            alert('Postagem atualizada com sucesso');
+        if (id !== undefined && user.id == postagem.usuario?.id) {
+        
+            try {
+                await put(`/postagens`, postagem, setPostagem, {
+                    headers: {
+                        'Authorization': token
+                    }
+                })
+
+                toast.success('Postagem atualizada com sucesso', {
+                position: "top-right",
+                autoClose: 2000, // fecha depois de 2s
+                hideProgressBar: false,
+                closeOnClick: true, 
+                pauseOnHover: false, // pausa o tempo com o mouse
+                draggable: false, // não pode mover
+                theme: "colored", 
+                progress: undefined,
+                })
+
+            } catch (error) {
+                console.log(`Error: ${error}`)
+                toast.error('Ops, algo deu errado. Tente novamente', {
+                position: "top-right",
+                autoClose: 2000, // fecha depois de 2s
+                hideProgressBar: false,
+                closeOnClick: true, 
+                pauseOnHover: false, // pausa o tempo com o mouse
+                draggable: false, // não pode mover
+                theme: "colored", 
+                progress: undefined,
+                })
+            }
+
         } else {
-            post(`/postagens`, postagem, setPostagem, {
-                headers: {
-                    'Authorization': token
-                }
-            })
-            alert('Postagem cadastrada com sucesso');
-        }
+
+            try {
+                await post(`/postagens`, postagem, setPostagem, {
+                    headers: {
+                        'Authorization': token
+                    }
+                })
+
+                toast.success('Postagem cadastrada com sucesso', {
+                position: "top-right",
+                autoClose: 2000, // fecha depois de 2s
+                hideProgressBar: false,
+                closeOnClick: true, 
+                pauseOnHover: false, // pausa o tempo com o mouse
+                draggable: false, // não pode mover
+                theme: "colored", 
+                progress: undefined,
+                })
+
+            } catch (error) {
+                console.log("Error: " + error)
+                toast.error('Você precisa estar logado', {
+                position: "top-right",
+                autoClose: 2000, // fecha depois de 2s
+                hideProgressBar: false,
+                closeOnClick: true, 
+                pauseOnHover: false, // pausa o tempo com o mouse
+                draggable: false, // não pode mover
+                theme: "colored", 
+                progress: undefined,
+                })
+            } 
+        
+    }
         back()
 
     }
@@ -160,5 +218,3 @@ function CadastroPost() {
     )
 }
 export default CadastroPost;
-
-

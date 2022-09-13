@@ -5,15 +5,14 @@ import React, {ChangeEvent, useState, useEffect} from 'react';
 import UserLogin from '../../models/UserLogin';
 import { login } from '../../services/Service';
 import { useDispatch } from 'react-redux';
-import { addToken } from "../../store/tokens/actions";
-
+import { addToken, addId } from "../../store/tokens/actions";
+import { toast } from 'react-toastify';
 
 import './Login.css'
 
 function Login() {
   let history = useNavigate();
   const dispatch = useDispatch();
-  const [token, setToken] = useState('');
 
   const [userLogin, setUserLogin] = useState<UserLogin>(
     {
@@ -26,6 +25,15 @@ function Login() {
     }
   )
 
+  const [respUserLogin, setRespUserLogin] = useState<UserLogin>({
+    id: 0,
+    nome: '',
+    usuario: '',
+    senha: '',
+    foto: '',
+    token: ''
+})
+
   function updatedModel(e: ChangeEvent<HTMLInputElement>){
     setUserLogin({
       ...userLogin,
@@ -34,24 +42,62 @@ function Login() {
   }
 
   useEffect(() => {
-    if(token != '') {
-      dispatch(addToken(token));
-      history('/home')
+    if(respUserLogin.token !== ""){
+
+        // Verifica os dados pelo console (Opcional)
+        console.log("Token: " + respUserLogin.token)
+        console.log("ID: " + respUserLogin.id)
+
+        // Guarda as informações dentro do Redux (Store)
+        dispatch(addToken(respUserLogin.token)) 
+        dispatch(addId(respUserLogin.id.toString()))    // Faz uma conversão de Number para String
+        history('/home')
     }
-  }, [token]
-  )
+}, [respUserLogin.token])
+
+  useEffect(() => {
+    if(respUserLogin.token !== ""){
+
+        // Verifica os dados pelo console (Opcional)
+        console.log("Token: " + respUserLogin.token)
+        console.log("ID: " + respUserLogin.id)
+
+        // Guarda as informações dentro do Redux (Store)
+        dispatch(addToken(respUserLogin.token)) 
+        dispatch(addId(respUserLogin.id.toString()))    // Faz uma conversão de Number para String
+        history('/home')
+    }
+}, [respUserLogin.token])
   
   async function onSubmit(e: ChangeEvent<HTMLFormElement>){
     e.preventDefault();
     try{
-      await login('/usuarios/logar', userLogin, setToken)
+      
+      await login(`/usuarios/logar`, userLogin, setRespUserLogin)
+      toast.success('Usuário logado com sucesso', {
+        position: "top-right",
+        autoClose: 2000, // fecha depois de 2s
+        hideProgressBar: false,
+        closeOnClick: true, 
+        pauseOnHover: false, // pausa o tempo com o mouse
+        draggable: false, // não pode mover
+        theme: "colored", 
+        progress: undefined,
+        })
 
-      alert('Usuário logado com sucesso!')
-    }catch (error){
-      alert('Dados do usuário inconsistentes. Erro ao logar! ');
-    }
-    
+  } catch (error) {
+    toast.error('Dados incosistentes. Erro ao logar.', {
+      position: "top-right",
+      autoClose: 2000, // fecha depois de 2s
+      hideProgressBar: false,
+      closeOnClick: true, 
+      pauseOnHover: false, // pausa o tempo com o mouse
+      draggable: false, // não pode mover
+      theme: "colored", 
+      progress: undefined,
+      })
   }
+}
 
   return (
     <Grid container className="bg-login">

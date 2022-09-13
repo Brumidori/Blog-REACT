@@ -7,7 +7,7 @@ interface Postagem{
     texto: string;
     data: string;
     temas?: Tema|null;
-    usuario?: User | null;
+    usuario: User | null;
 }
 
 

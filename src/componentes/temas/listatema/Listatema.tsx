@@ -5,20 +5,30 @@ import Tema from '../../../models/Tema';
 import './Listatema.css';
 import { busca } from '../../../services/Service';
 import { useSelector } from 'react-redux';
-import { TokenState} from '../../../store/tokens/tokenReducer'
+import { UserState} from '../../../store/tokens/tokenReducer'
 import CardTema from '../cardTema/cardTema';
+import { toast } from 'react-toastify';
 
 function ListaTema() {
 
   const [temas, setTemas] = useState<Tema[]>([])
-  const token = useSelector<TokenState, TokenState["tokens"]>(
+  const token = useSelector<UserState, UserState["tokens"]>(
     (state) => state.tokens
   );
   let navigate = useNavigate();
 
   useEffect(()=>{
     if(token == '') {
-      alert("Você precisa estar logado")
+      toast.error('Você precisa estar logado', {
+      position: "top-right",
+      autoClose: 2000, // fecha depois de 2s
+      hideProgressBar: false,
+      closeOnClick: true, 
+      pauseOnHover: false, // pausa o tempo com o mouse
+      draggable: false, // não pode mover
+      theme: "colored", 
+      progress: undefined,
+      })
       navigate("/login")
     }
 }, [token])

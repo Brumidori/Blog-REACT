@@ -5,20 +5,29 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { buscaId, deleteId } from '../../../services/Service';
 import Tema from '../../../models/Tema';
 import { useSelector } from 'react-redux';
-import { TokenState } from '../../../store/tokens/tokenReducer';
-
+import { UserState } from '../../../store/tokens/tokenReducer';
+import { toast } from 'react-toastify';
 
 function DeletarTema() {
     let history = useNavigate();
     const { id_temas } = useParams<{id_temas: string}>();
-    const token = useSelector<TokenState, TokenState["tokens"]>(
+    const token = useSelector<UserState, UserState["tokens"]>(
       (state) => state.tokens
     );
     const [tema, setTema] = useState<Tema>()
 
     useEffect(() => {
         if (token == "") {
-            alert("Você precisa estar logado")
+          toast.error('Você precisa estar logado', {
+          position: "top-right",
+          autoClose: 2000, // fecha depois de 2s
+          hideProgressBar: false,
+          closeOnClick: true, 
+          pauseOnHover: false, // pausa o tempo com o mouse
+          draggable: false, // não pode mover
+          theme: "colored", 
+          progress: undefined,
+          })
             history("/login")
     
         }
@@ -45,7 +54,16 @@ function DeletarTema() {
                 'Authorization': token
               }
             });
-            alert('Tema deletado com sucesso');
+            toast.success('Tema deletado com sucesso', {
+            position: "top-right",
+            autoClose: 2000, // fecha depois de 2s
+            hideProgressBar: false,
+            closeOnClick: true, 
+            pauseOnHover: false, // pausa o tempo com o mouse
+            draggable: false, // não pode mover
+            theme: "colored", 
+            progress: undefined,
+            })
           }
         
           function nao() {

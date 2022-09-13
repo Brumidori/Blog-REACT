@@ -5,12 +5,13 @@ import './Navbar.css'
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { TokenState } from '../../../store/tokens/tokenReducer';
+import { UserState } from '../../../store/tokens/tokenReducer';
 import { addToken } from '../../../store/tokens/actions';
+import { toast } from 'react-toastify';
 
 
 function Navbar() {
-    const token = useSelector<TokenState, TokenState["tokens"]>(
+    const token = useSelector<UserState, UserState["tokens"]>(
         (state) => state.tokens
     );
     let navigate = useNavigate();
@@ -18,7 +19,16 @@ function Navbar() {
 
     function goLogout() {
         dispatch(addToken(''));
-        alert("Usuário deslogado")
+        toast.info('Usuário deslogado', {
+            position: "top-right",
+            autoClose: 2000, // fecha depois de 2s
+            hideProgressBar: false,
+            closeOnClick: true, 
+            pauseOnHover: false, // pausa o tempo com o mouse
+            draggable: false, // não pode mover
+            theme: "colored", 
+            progress: undefined,
+        })
         navigate('/login')
     }
 
@@ -38,6 +48,13 @@ function Navbar() {
                     <Box mx={1} className='cursor, botaoNav'>
                         <Typography >
                             Home
+                        </Typography>
+                    </Box>
+                </Link>
+                <Link to='/perfil' className='text-decoration-none'>
+                    <Box mx={1} className='cursor, botaoNav'>
+                        <Typography >
+                            Perfil
                         </Typography>
                     </Box>
                 </Link>
