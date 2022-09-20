@@ -23,6 +23,7 @@
 
 .card-imagem{
     object-fit: cover;
+    max-height: 5rem;
     
 }
 

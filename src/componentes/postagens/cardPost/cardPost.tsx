@@ -67,7 +67,7 @@ function CardPost({ objetoPost }: CardProps) {
                   </Link>
                 </> 
                 : 
-                <Box> Você não pode editar</Box>
+                <Box> Você pode editar apenas seus posts</Box>
                       }
 
           </Box>
